@@ -283,3 +283,32 @@ Modify the function onCreate() of BookListActivity class
 Click View Books button
 
 ![img_25.png](img_25.png)
+
+
+```mermaid
+graph TD
+    subgraph MainActivity
+        direction LR
+        A[onCreate] --> B{"Initialize UI elements"};
+        B --> C{"Initialize Firebase Database"};
+        C --> D{"Set listeners for Buttons"};
+    end
+
+    subgraph AddBook
+        direction LR
+        E[btnAddBook: onClick] --> F{"Create Book object"};
+        F --> G{"Get input values"};
+        G --> H{"Call addBook(Book)"};
+        H --> I{"Get DatabaseReference 'books'"};
+        I --> J{"Push data to Firebase"};
+        J -- Success --> K{"Show Success Toast"};
+        J -- Failure --> L{"Log Error & Show Error Toast"};
+    end
+
+    subgraph ViewBooks
+        M[btnViewBooks: onClick] --> N["// TODO: Implement viewing books"];
+    end
+
+    MainActivity -- calls --> AddBook
+    MainActivity -- calls --> ViewBooks
+```
